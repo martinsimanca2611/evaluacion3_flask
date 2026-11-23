@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block titulo %}Ejercicio 1{% endblock %}
+
+{% block contenido %}
+    <div class="tarjeta">
+        <h2>Formulario de Notas</h2>
+
+        <form method="POST" action="{{ url_for('ejercicio1') }}">
+            <label for="nota1">Nota 1:</label>
+            <input type="text" id="nota1" name="nota1" value="{{ request.form.get('nota1', '') }}" required>
+
+            <label for="nota2">Nota 2:</label>
+            <input type="text" id="nota2" name="nota2" value="{{ request.form.get('nota2', '') }}" required>
+
+            <label for="nota3">Nota 3:</label>
+            <input type="text" id="nota3" name="nota3" value="{{ request.form.get('nota3', '') }}" required>
+
+            <label for="asistencia">Asistencia (%):</label>
+            <input type="text" id="asistencia" name="asistencia" value="{{ request.form.get('asistencia', '') }}" required>
+
+            <button type="submit" class="boton-enviar">Enviar</button>
+        </form>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        {% if promedio is not none %}
+            <p>{{ promedio }}</p>
+            <p>{{ estado }}</p>
+        {% endif %}
+
+        <a href="{{ url_for('index') }}" class="volver">Volver al menú</a>
+    </div>
+{% endblock %}
